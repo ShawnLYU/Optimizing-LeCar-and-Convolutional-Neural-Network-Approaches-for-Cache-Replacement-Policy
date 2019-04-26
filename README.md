@@ -32,15 +32,8 @@ What things you need to install the software and how to install them
 
 ## Running the tests
 
-To run the model, you can cd any of the baseline model or the hybrid model, and with command:
+In Neural networks, there are two pre-trained models: MLP and CNN. In each folder, there is a Jupyter Notebook where you could load the model and make predictions.
 
-```
-allennlp train config.json -s res --include-package packages
-```
-
-## Notes
-
-This package would save the model after each epoch and all of the metrics during the training process.
 
 ## Contributing
 
