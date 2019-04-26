@@ -15,8 +15,7 @@ This is a Storage System project to improve cache replacement policies @ Univers
 
 ## Getting Started
 
-These repo will get you a copy of both our models. Sample data is provided here for to get your hands dirty.
-
+These repo will get you a copy of both our models. 
 
 ### Prerequisites
 
