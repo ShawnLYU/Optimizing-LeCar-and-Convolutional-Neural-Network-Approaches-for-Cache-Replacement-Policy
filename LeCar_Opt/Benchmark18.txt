@@ -1,0 +1,78 @@
+/usr/local/bin/python3.7 /Users/yilinhan/Desktop/UT/Winter/CSC2233/project/CacheAlgorithms.py
+2019-04-18 00:59:33.914745:Loading Blocktrace
+2019-04-18 01:00:01.474893:Starting simulator...
+********************************************************************************************************
+*
+*    Input file: ./DATA/cheetah.cs.fiu.edu-110108-113008.2.blkparse
+*    Cache size: [  10  20 30 60 100 200 1000]
+*    Workload size: 2057532
+*    Data size: 22711277
+*    Cache size/workload ratio: [4.860200e-06 9.72040e-06 1.458060e-05 2.91612e-05 4.860190e-05 9.720380e-05 4.860192e-04]
+*    Algorithms: ['LRU(cache_size)', 'LFU(cache_size)', 'OPT(cache_size)', 'ARC(cache_size)', 'LeCar_Opt5(cache_size,history_size_factor=1)']
+*
+********************************************************************************************************
+
+2019-04-18 01:00:04.245442:Run algorithms...
+
+ Cache Size:10
+     LRU:0.0381658856 time:0:00:17.359509
+     LFU:0.0368211792 time:0:01:05.764815
+     OPT:0.0435981209 time:0:00:56.205540
+     ARC:0.0391722139 time:0:01:04.520342
+     LeCar_Opt5 history size:10, # of policy switches:5002
+     LeCar_Opt5 history size:10:0.0392117977 time:0:01:30.754633
+
+ Cache Size:20
+     LRU:0.0395288209 time:0:00:17.481783
+     LFU:0.0378188774 time:0:01:34.099118
+     OPT:0.0451618815 time:0:01:02.560551
+     ARC:0.0407232055 time:0:01:15.895981
+     LeCar_Opt5 history size:20, # of policy switches:2546
+     LeCar_Opt5 history size:20:0.040766576 time:0:01:37.535039
+
+ Cache Size:30
+     LRU:0.0400069534 time:0:00:16.669993
+     LFU:0.0385776634 time:0:02:02.378798
+     OPT:0.0457722391 time:0:01:04.926453
+     ARC:0.0412896201 time:0:01:21.002167
+     LeCar_Opt5 history size:30, # of policy switches:1613
+     LeCar_Opt5 history size:30:0.0410740884 time:0:01:35.362405
+
+ Cache Size:60
+     LRU:0.0404291665 time:0:00:17.147825
+     LFU:0.0403003319 time:0:03:26.174930
+     OPT:0.0468564141 time:0:01:18.527239
+     ARC:0.0419228738 time:0:01:44.127082
+     LeCar_Opt5 history size:60, # of policy switches:2630
+     LeCar_Opt5 history size:60:0.043359649 time:0:02:31.517914
+
+
+ Cache Size:100
+     LRU:0.042294011 time:0:00:17.931466
+     LFU:0.0416818922 time:0:05:19.378130
+     OPT:0.0480424328 time:0:01:34.471026
+     ARC:0.044035877 time:0:02:22.418758
+     LeCar_Opt5 history size:100, # of policy switches:2418
+     LeCar_Opt5 history size:100:0.0435510518 time:0:02:45.144195
+
+Cache Size:200
+     LRU:0.0432091071 time:0:00:21.371668
+     LFU:0.0436115063 time:0:09:34.942053
+     OPT:0.050607282 time:0:02:18.269248
+     ARC:0.044710872 time:0:03:38.112594
+     LeCar_Opt5 history size:200, # of policy switches:1810
+     LeCar_Opt5 history size:200:0.0440165033 time:0:03:57.723520
+
+
+ Cache Size:1000
+     LRU:0.0445697527 time:0:00:34.427316
+     LFU:0.0503007383 time:0:44:30.444548
+     OPT:0.0680296841 time:0:07:38.829690
+     ARC:0.0475258172 time:0:11:17.535168
+     LeCar_Opt5 history size:1000, # of policy switches:1210
+     LeCar_Opt5 history size:1000:0.0451766759 time:0:15:26.292763
+
+
+2019-04-18 03:04:34.821861:done.
+
+Process finished with exit code 0
