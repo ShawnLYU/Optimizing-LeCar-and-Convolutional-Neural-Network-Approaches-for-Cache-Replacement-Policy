@@ -1,0 +1,81 @@
+\begin{thebibliography}{10}
+
+\bibitem{ari2002acme}
+Ismail Ari, Ahmed Amer, Robert~B Gramacy, Ethan~L Miller, Scott~A Brandt, and
+  Darrell~DE Long.
+\newblock Acme: Adaptive caching using multiple experts.
+\newblock In {\em WDAS}, pages 143--158, 2002.
+
+\bibitem{belady1966study}
+Laszlo~A. Belady.
+\newblock A study of replacement algorithms for a virtual-storage computer.
+\newblock {\em IBM Systems journal}, 5(2):78--101, 1966.
+
+\bibitem{brodley1995multivariate}
+Carla~E Brodley and Paul~E Utgoff.
+\newblock Multivariate decision trees.
+\newblock {\em Machine learning}, 19(1):45--77, 1995.
+
+\bibitem{brunelle2007blktrace}
+Alan~D Brunelle.
+\newblock Blktrace user guide.
+\newblock {\em USA}, 2007.
+
+\bibitem{coffman1973operating}
+Edward~Grady Coffman and Peter~J Denning.
+\newblock {\em Operating systems theory}, volume 973.
+\newblock prentice-Hall Englewood Cliffs, NJ, 1973.
+
+\bibitem{consuegra2015analyzing}
+Mario~E Consuegra, Wendy~A Martinez, Giri Narasimhan, Raju Rangaswami, Leo
+  Shao, and Giuseppe Vietri.
+\newblock Analyzing adaptive cache replacement strategies.
+\newblock {\em arXiv preprint arXiv:1503.07624}, 2015.
+
+\bibitem{im2018snn}
+Youngbin Im, Prasanth Prahladan, Tae~Hwan Kim, Yong~Geun Hong, and Sangtae Ha.
+\newblock Snn-cache: A practical machine learning-based caching system
+  utilizing the inter-relationships of requests.
+\newblock In {\em 2018 52nd Annual Conference on Information Sciences and
+  Systems (CISS)}, pages 1--6. IEEE, 2018.
+
+\bibitem{koller2010deduplication}
+Ricardo Koller and Raju Rangaswami.
+\newblock I/o deduplication: Utilizing content similarity to improve i/o
+  performance.
+\newblock {\em ACM Transactions on Storage (TOS)}, 6(3):13, 2010.
+
+\bibitem{mattson1970evaluation}
+Richard~L. Mattson, Jan Gecsei, Donald~R. Slutz, and Irving~L. Traiger.
+\newblock Evaluation techniques for storage hierarchies.
+\newblock {\em IBM Systems journal}, 9(2):78--117, 1970.
+
+\bibitem{megiddo2003arc}
+Nimrod Megiddo and Dharmendra~S Modha.
+\newblock Arc: A self-tuning, low overhead replacement cache.
+\newblock In {\em FAST}, volume~3, pages 115--130, 2003.
+
+\bibitem{article}
+Muralidharan Murugesan and E~Kirubakaran.
+\newblock Impact of machine learning techniques with cache replacement
+  algorithmsinenhancingthe performance of thewebserver.
+\newblock {\em International Journal of Advanced Research in Computer Science
+  and Software Engineering}, 7:812--816, 06 2017.
+
+\bibitem{WinNT}
+Oracle.
+\newblock Deque (java platform se 7 ), 2018.
+
+\bibitem{schmidhuber2015deep}
+J{\"u}rgen Schmidhuber.
+\newblock Deep learning in neural networks: An overview.
+\newblock {\em Neural networks}, 61:85--117, 2015.
+
+\bibitem{vietri2018driving}
+Giuseppe Vietri, Liana~V Rodriguez, Wendy~A Martinez, Steven Lyons, Jason Liu,
+  Raju Rangaswami, Ming Zhao, and Giri Narasimhan.
+\newblock Driving cache replacement with ml-based lecar.
+\newblock In {\em 10th $\{$USENIX$\}$ Workshop on Hot Topics in Storage and
+  File Systems (HotStorage 18)}, 2018.
+
+\end{thebibliography}
