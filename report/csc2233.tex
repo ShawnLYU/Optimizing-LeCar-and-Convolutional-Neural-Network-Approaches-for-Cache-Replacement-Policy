@@ -196,6 +196,12 @@ With the data being processed in the first approach, decision trees and MLPs wer
 	\label{fig:mlp_design}
 \end{figure}
 For MLPs, two different structures - MLP1 and MLP2, two models with the highest hit ratio, are selected for comparison in later experiments - are implemented to examine the model performances. As shown in the \ref{fig:mlp_design}, MLP1 consists of one input layer, one output layer, and three hidden layers. The numbers of neurons for each layer are 3, 10, 100, 500, 2. MLP2 consists of one more hidden layers with a size of 1000. Notably, in both cases, ReLU was applied as the activation function. The model would take each sample as input and compute the class labels, trying to optimize the cross-entropy loss.
+\begin{align} 
+\begin{split}
+\operatorname{loss}(x, y)=-\log \left(\frac{\exp (x[y])}{\sum_{j} \exp (x[j])}\right)
+\end{split}         
+\end{align}
+
 
 \begin{figure}[!ht]
 	\centering 
