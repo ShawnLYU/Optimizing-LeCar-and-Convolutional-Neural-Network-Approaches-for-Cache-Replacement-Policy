@@ -32,7 +32,15 @@ What things you need to install the software and how to install them
 
 In Neural networks, there are two pre-trained models: MLP and CNN. In each folder, there is a Jupyter Notebook where you could load the model and make predictions.
 
+In LeCar_Opt, the variables "`input_file`", "`cache_size_array`", and "`algorithms`" need to be setup in the main method.
+The LeCar_Opt is the method "`LeCar_Opt5`" in `CacheAlgorithms.py`. 
+python3 is required.
+The file is executable as following command:
+```python
+python3 CacheAlgorithm.py
+```
 
+    
 ## Contributing
 
 This project exists thanks to all the people who contribute. 
