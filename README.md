@@ -40,6 +40,7 @@ The file is executable as following command:
 python3 CacheAlgorithm.py
 ```
 
+A sample testing benchmark is added in `LeCar_Opt/BenchMark18.txt`
     
 ## Contributing
 
