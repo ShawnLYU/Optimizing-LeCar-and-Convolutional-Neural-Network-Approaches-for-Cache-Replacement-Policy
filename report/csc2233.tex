@@ -23,6 +23,12 @@
 \usepackage{caption}
 \usepackage{multirow}
 
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{fancyhdr,graphicx,amsmath,amssymb}
+\usepackage[ruled,vlined]{algorithm2e}
+\include{pythonlisting}
+
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
@@ -81,7 +87,7 @@ Improving system performance with caching replacement technique is always one of
 
 %-------------------------------------------------------------------------------
 \section{Introduction}
-Historically, the development of CPU is much faster than the improvement of disk bandwidth. Cache replacement algorithms as one of the oldest and fundamental computer problem play an essential role to resolve this gap. The performance of caching algorithms strongly influence the system performance. Especially in the past decade,  with the advance of the big data technology, more and more data are required to be stored and processed in the modern software systems. 
+Historically, the development of CPU is much faster than the improvement of disk bandwidth. Cache replacement algorithms as one of the oldest and fundamental computer problems play an essential role to resolve this gap. The performance of caching algorithms strongly influence the system performance. Especially in the past decade,  with the advance of the big data technology, more and more data are required to be stored and processed in the modern software systems. 
 
 Cache is used to balance the performance difference between high-speed devices and low-speed devices. For example, the data in the memory is written to the Hard Disk DriveHDD (HDD). Since HDD is much slower than the memory, it takes a long time to complete a task in theory, which results in very slow writing performance. In order to resolve the speed difference between memory and HDD, a buffer is created between them to temporarily store the data. 
 
@@ -98,7 +104,7 @@ Least Frequently Used (LFU) cache replacement algorithm tends to evict the least
 
 The ARC (Adaptive Replacement Cache) algorithms combine the LRU and LFU algorithms\cite{megiddo2003arc}. ARC proposed a novel approach that not only cares about the recency and frequency but also includes the history of evicted pages into considerations\cite{consuegra2015analyzing}. It divides the cache into two LRU lists: T1 and T2. T1 is maintained to cover the short-term utility such that a new page is always stored in the T1 list when it first time entered the cache. The pages in T1 will gradually move to T2 when they are accessed more than once. This means T2 list represent the frequency feature of the page just as LFU. Thus, the long-term utility is preserved in T2. In addition to using T1 and T2 list to represent the cache, ARC also maintains a history list with the same size as cache. They are being called “Ghost” list B1 and B2 were corresponding to T1 and T2 respectively. B1 stores the pages, which is not currently in the cache, that have been recently deleted from T1, and B2 stores the pages recently deleted from T2. B1 and B2 are also acting as LRU manner. The unique characteristic of ARC is the ability of self-tuning. The size of T1 may grow or shrink relative to T2 when there is a hit in B1 or B2. This adaptive feature makes the algorithm capable of adjusting the T1 and T2 size in order to overcome the above-mentioned disadvantages from LRU and LFU.
 
-Belady’s Optimal Replacement Policy (OPT) is considered as the best cache replacement algorithm in this field\cite{belady1966study}\cite{mattson1970evaluation}. OPT traces the future blocks that will be brought to cache in order to pick the best candidate to evict. It is not implementable because no one could truly predict the future requests in practice. Nevertheless, it is still used as the performance benchmark for cache algorithms testing. 
+Belady's Optimal Replacement Policy (OPT) is considered as the best cache replacement algorithm in this field\cite{belady1966study}\cite{mattson1970evaluation}. OPT traces the future blocks that will be brought to cache in order to pick the best candidate to evict. It is not implementable because no one could truly predict the future requests in practice. Nevertheless, it is still used as the performance benchmark for cache algorithms testing. 
 
 
 \subsection{Machine learning based approaches}
@@ -137,46 +143,60 @@ In Algorithm 1, the LeCar\_OPT manages a First In First Out (FIFO)lists of histo
 
 The policy switching is not only decided by whether there is a hit on the corresponding history list but also decided by its recency and frequency as described in the above two cases. At the early stage while developing the algorithm, the hit ratio reduced due to frequent switching of the policy. That is because some pages have stayed in the history pages for too long, causing a false signal to change the policy. For example, the page can stay in LFU evicted page history for a long period of time, that exceed the size. The page is considered invalid because the page is not going to generate a hit even the algorithm uses LRU. 
 
-\begin{lstlisting}
-#Algorithm1: LeCar_OPT:
-Input: requested page q
-if q in cache:
-    update_receny(q)
-    update_frequency(q)
-else:
-    if q is in lru_evicted_history and current_policy is lru:
-        max_frequency := max(frequency_list(cache))
-        if frequency(q) > max_frequency:
-            lru_evicted_history.delete(q)
-        else if block is in lfu_evicted_history and current_policy is lfu:
-            if evicted_page_count >= cache.size:
-                lfu_evicted_history.delete(q)
-
-        if block is in lru_evicted_history and current_policy is lru:
-            lru_evicted_history.delete(q)
-            current_policy := lfu
-        else if block is in lfu_evicted_history and current_policy is lfu:
-            cache :=sort(get_recency_list(cache))
-            lfu_evicted_history.delete(q)
-            current_policy := lru
-                
-    if cache is full:
-        if current_policy is lru:
-            victim := get_least_recency(cache)
-            if lru_evicted_history is full:
-                lru_evicted_history.delete_head()
-            lru_evicted_history.append(victim)
-        else if current_policy is lfu:
-            victim := get_least_frequent(cache)
-            if lfu_evicted_history is full:
-                lfu_evicted_history.delete_head()
-            lfu_evicted_history.append(victim) 
-
-        cache.remove(victim)
-        update_recency_frequency(victim)
-        cache.add(q)
-
-\end{lstlisting}
+\begin{algorithm}
+\SetAlgoLined
+\KwIn{requested page $q$}
+    initialization\;
+    \eIf{$q$ is in $cache$}{
+            UPDATE\_RECENCY($q$)\;
+            UPDATE\_FREQUENCY($q$)\;
+        }
+    {
+        \uIf{$q$ is in $lru\_evicted\_history$ AND $current\_policy$ is $lru$}{
+            $max\_frequency$ $\leftarrow$ MAX(GET\_FREQUENCY($cache$))\;
+            \uIf{FREQUENCY($q$) $\textgreater$ $max\_frequency$}{
+                $lru\_evicted\_history$.DELETE$(q)$\;
+            }
+        }
+        \ElseIf{$q$ is in $lfu\_evicted\_history$ AND $current\_policy$ is $lfu$}{
+            \If{$evicted\_page\_count$ $\geq$ $cache.size$ }{
+                $lfu\_evicted\_history$.DELETE$(q)$)\;
+            }
+        }
+        \bigbreak
+        \uIf{$q$ is in $lru\_evicted\_history$ AND $current\_policy$ is $lru$}{
+             $lru\_evicted\_history$.DELETE$(q)$\;
+             $current\_policy$ $\leftarrow$ $lfu$\;
+        }
+        \ElseIf{$q$ is in $lfu\_evicted\_history$ AND $current\_policy$ is $lfu$}{
+            $cache$ $\leftarrow$ SORT(GET\_RECENCY($cache$))\;
+            $lfu\_evicted\_history$.DELETE$(q)$\;
+            $current\_policy$ $\leftarrow$ $lru$\;
+        }
+        \bigbreak
+        \If{$cache$ is FULL}{
+            \uIf{$current\_policy$ is $lru$}{
+                $victim$ $\leftarrow$ GET\_LEAST\_RECENCY($cache$)\;
+                \If{$lru\_evicted\_history$ is FULL}{
+                    $lru\_evicted\_history$.DELETE\_HEAD()\;
+                }
+                $lru\_evicted\_history$.APPEND($victim$)\;
+            }
+            \ElseIf{$current\_policy$ is $lfu$}{
+                $victim$ $\leftarrow$ GET\_LEAST\_FREQUENCY($cache$)\;
+                \If{$lfu\_evicted\_history$ is FULL}{
+                    $lfu\_evicted\_history$.DELETE\_HEAD()\;
+                }
+                $lfu\_evicted\_history$.APPEND($victim$)\;
+            }
+            $cache$.REMOVE($victim$)\;
+        }
+        %UPDATE\_RECENCY\_FREQUENCY($victim$)\;
+        $cache$.ADD($q$)\;
+    }
+ 
+\caption{LeCar\_Opt}
+\end{algorithm}
 
 
 \subsubsection{Machine learning based approaches}
@@ -189,13 +209,9 @@ In the second approach, a cache size is again defined as $C$ , and the entire ca
 Let $Z$ be the sample space where samples are represented as $X\times Y$. A model is designed to find a hypothesis space $W$ so that $W\times Z \Rightarrow \mathbb{R}$. To train the model,e the loss is defined as $\iota\left ( (w,x),y \right ), x\in X, y \in Y, w \in W$.
 
 With the data being processed in the first approach, decision trees and MLPs were implemented, which take each sample $X_i \in \mathbb{R}^{3}$ as the input, and produce $Y_i \in \left\{0,1\right\}$ as the output. For the decision tree, Gini Impurity [Brodley, Carla E., and Paul E. Utgoff. "Multivariate decision trees." Machine learning 19.1 (1995): 45-77.] was adopted as the split criterion with equal class weights. During the training, the model would always try to expand until all leaves nodes are pure. 
-\begin{figure}[!ht]
-	\centering 
-	\includegraphics[width=0.38\textheight]{proj_graphs/NN_str/NN_str001.jpg}
-	\caption{CNN structure}
-	\label{fig:mlp_design}
-\end{figure}
-For MLPs, two different structures - MLP1 and MLP2, two models with the highest hit ratio, are selected for comparison in later experiments - are implemented to examine the model performances. As shown in the \ref{fig:mlp_design}, MLP1 consists of one input layer, one output layer, and three hidden layers. The numbers of neurons for each layer are 3, 10, 100, 500, 2. MLP2 consists of one more hidden layers with a size of 1000. Notably, in both cases, ReLU was applied as the activation function. The model would take each sample as input and compute the class labels, trying to optimize the cross-entropy loss.
+
+
+For MLPs, two different structures - MLP1 and MLP2, two models with the highest hit ratio, are selected for comparison in later experiments - are implemented to examine the model performances. As shown in the figure figure \ref{fig:mlp_design}, MLP1 consists of one input layer, one output layer, and three hidden layers. The numbers of neurons for each layer are 3, 10, 100, 500, 2. MLP2 consists of one more hidden layers with a size of 1000. Notably, in both cases, ReLU was applied as the activation function. The model would take each sample as input and compute the class labels, trying to optimize the cross-entropy loss.
 \begin{align} 
 \begin{split}
 \operatorname{loss}(x, y)=-\log \left(\frac{\exp (x[y])}{\sum_{j} \exp (x[j])}\right)
@@ -211,12 +227,12 @@ For MLPs, two different structures - MLP1 and MLP2, two models with the highest 
 \end{figure}
 
 
-With the data being processed in the second approach, convolutional neural networks were implemented. As shown in \ref{fig:nn_design}, the model consists of two convolutional layers and fully connected layers as well. The input layer dimension is (100,3,1) where 100 refers to fixed cache size, 3 refers to 3-dimensional features: block number, recency, and frequency, and 1 is the number of channels. The first convolutional layer consists of 6 kernels with sizes of (10,3,1). Notably, The kernel was set as wide as the data for the model to focus on internal relations among pages in the cache. After two convolutional layers, three layers of fully connected are attached.
+With the data being processed in the second approach, convolutional neural networks were implemented. The model consists of two convolutional layers and fully connected layers as well. The input layer dimension is (100,3,1) where 100 refers to fixed cache size, 3 refers to 3-dimensional features: block number, recency, and frequency, and 1 is the number of channels. The first convolutional layer consists of 6 kernels with sizes of (10,3,1). Notably, The kernel was set as wide as the data for the model to focus on internal relations among pages in the cache. After two convolutional layers, three layers of fully connected are attached.
 
 \section{Experiments and analysis}
 
 
-\subsubsection{LeCar - Opt}
+\subsection{LeCar - Opt}
 \begin{figure}[!ht]
 	\centering 
 	\includegraphics[width=0.38\textheight]{hitratio_bar.png}
@@ -224,9 +240,9 @@ With the data being processed in the second approach, convolutional neural netwo
 }
 	\label{fig:lecar_res}
 \end{figure}
-In \ref{fig:lecar_res}, LeCar\_Opt is compared with the traditional cache algorithms: LRU, LFU, ARC, and OPT. Among all these algorithms, OPT stands for the best possible hit ratio on the FIU workload. One interesting observation is when the cache size is large, LFU is the best strategy among other algorithms except for OPT, and LRU benefited the least improvement from a larger cache size. These generally show two important characteristics of the workload dataset. First, the pages with high frequency will more likely to be accessed again in the workload. Second, the low performance of LRU with a larger cache size indicates that the workload consists of long and large sequential scan requests. Another interesting observation is that when the cache size is small, LeCar generally outperforms LRU, LFU, and ARC. When the cache size is big, LeCar\_Opt is more close to the performance of LRU. 
+In figure \ref{fig:lecar_res}, LeCar\_Opt is compared with the traditional cache algorithms: LRU, LFU, ARC, and OPT. Among all these algorithms, OPT stands for the best possible hit ratio on the FIU workload. One interesting observation is when the cache size is large, LFU is the best strategy among other algorithms except for OPT, and LRU benefited the least improvement from a larger cache size. These generally show two important characteristics of the workload dataset. First, the pages with high frequency will more likely to be accessed again in the workload. Second, the low performance of LRU with a larger cache size indicates that the workload consists of long and large sequential scan requests. Another interesting observation is that when the cache size is small, LeCar generally outperforms LRU, LFU, and ARC. When the cache size is big, LeCar\_Opt is more close to the performance of LRU. 
 
-\ref{fig:time} summarizes the efficiency of the algorithm respect to different cache size. The LeCar\_Opt is slower than ARC. However, refers to \ref{tab:my-table}, the execution time increased linearly when the cache size grows.
+Figure \ref{fig:time} summarizes the efficiency of the algorithm respect to different cache size. The LeCar\_Opt is slower than ARC. However, refers to table \ref{tab:my-table}, the execution time increased linearly when the cache size grows.
 
 
 \begin{figure}[!ht]
@@ -256,7 +272,7 @@ Cache Size & ARC Elapsed Time & LeCar\_OPT Elapsed Time & LeCar\_OPT/ARC Ratio \
 \caption{Ratio for LeCar\_Opt elapsed time and ARC elapsed time respect to different cache size. }
 \label{tab:my-table}
 \end{table}
-\subsubsection{Machine learning based approaches}
+\subsection{Machine learning based approaches}
 
 \begin{figure}[!ht]
 	\centering 
@@ -266,7 +282,7 @@ Cache Size & ARC Elapsed Time & LeCar\_OPT Elapsed Time & LeCar\_OPT/ARC Ratio \
 	\label{fig:nn_hit}
 \end{figure}
 
-During the experiments with ML-based approaches, hit ratio was used as the evaluation metric. We first tested with MLP with different cache sizes. As shown in the \ref{fig:nn_hit}, a more complex network structure provides little improvement, and decision tree claimed a better performance compared to MLP. Besides, MLP did not achieve a higher hit ratio in larger cache sizes. On the contrast, the decision tree presented a steadily increased performance with different cache sizes. Then, we can summarize that a decision tree performs much better in the cache replacement scenario.
+During the experiments with ML-based approaches, hit ratio was used as the evaluation metric. We first tested with MLP with different cache sizes. As shown in the figure \ref{fig:nn_hit}, a more complex network structure provides little improvement, and decision tree claimed a better performance compared to MLP. Besides, MLP did not achieve a higher hit ratio in larger cache sizes. On the contrast, the decision tree presented a steadily increased performance with different cache sizes. Then, we can summarize that a decision tree performs much better in the cache replacement scenario.
 
 \begin{figure}[!ht]
 	\centering 
@@ -276,7 +292,7 @@ During the experiments with ML-based approaches, hit ratio was used as the evalu
 	\label{fig:cnn_dnn_dt}
 \end{figure}
 
-As shown in \ref{fig:cnn_dnn_dt}, CNN outperforms both MLP and decision tree, and it is also slightly better than LFU. Our CNN model was constrained to learn internal relations with pages in the cache by fixing the kernel width as the same as page features, and in return, the model captured more hidden features and generated better predictions. In addition, since the designed models are all learning the OPT algorithm, it could be concluded that CNN learns the OPT pattern better than other ML-based models.  The result of outperformance is credited to the Kernels\cite{schmidhuber2015deep} design in CNN, which captures the relationships between the inputs.  
+As shown in figure \ref{fig:cnn_dnn_dt}, CNN outperforms both MLP and decision tree, and it is also slightly better than LFU. Our CNN model was constrained to learn internal relations with pages in the cache by fixing the kernel width as the same as page features, and in return, the model captured more hidden features and generated better predictions. In addition, since the designed models are all learning the OPT algorithm, it could be concluded that CNN learns the OPT pattern better than other ML-based models.  The result of outperformance is credited to the Kernels\cite{schmidhuber2015deep} design in CNN, which captures the relationships between the inputs.  
 
 
 \section{Conclusion and future work}
