@@ -206,8 +206,6 @@ INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/tools/longtable.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/tools/longtable.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/setspace/setspace.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/setspace/setspace.sty
-INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/natbib/natbib.sty
-INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/natbib/natbib.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/graphics/lscape.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/graphics/lscape.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/scalerel/scalerel.sty
@@ -399,13 +397,13 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmb8t.tfm
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/adobe/times/ptmb8t.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/adobe/times/ptmri8t.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/adobe/times/zptmcmrm.vf

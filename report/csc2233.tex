@@ -13,7 +13,7 @@
 \usepackage{mathptmx}
 \usepackage{setspace}
 % for author-year citation style
-\usepackage{natbib}
+% \usepackage{natbib}
 \usepackage{lscape}
 \usepackage{graphicx}
 \usepackage{scalerel}
@@ -111,7 +111,7 @@ Belady's Optimal Replacement Policy (OPT) is considered as the best cache replac
 
 Increasing attention is cast on Machine Learning (ML) in recent years, which is a field where algorithms are applied on computers to learn from previous data for predicting similar patterns in new data, without explicitly programmed. It can be generally categorized into three main approaches: supervised learning, unsupervised learning, and reinforcement learning\cite{article}. 
 
-Researchers have shown that ML could be applied to improve cache replacement policies: \citet{im2018snn} proposed an ML-based caching system to notably decrease the load of content servers by improving caching decisions; \citet{ari2002acme} developed the ACME system which utilizes ML to learn from multiple cache replacement strategies before making the recommendation about which to evict; \citet{article} showed that supervised learning algorithms like Support Vector Machines and Naive Bayes would lead to considering improving on hit ratio when combined with traditional algorithms like LRU, LFU. Besides, with the increasing computational powers, Neural Networks like MLP and CNN furthermore enhance the learning ability of machines.
+Researchers have shown that ML could be applied to improve cache replacement policies: \cite{im2018snn} proposed an ML-based caching system to notably decrease the load of content servers by improving caching decisions; \cite{ari2002acme} developed the ACME system which utilizes ML to learn from multiple cache replacement strategies before making the recommendation about which to evict; \cite{article} showed that supervised learning algorithms like Support Vector Machines and Naive Bayes would lead to considering improving on hit ratio when combined with traditional algorithms like LRU, LFU. Besides, with the increasing computational powers, Neural Networks like MLP and CNN furthermore enhance the learning ability of machines.
 
 As revealing internal relations and capturing hidden patterns among page requests would remarkably improve the efficiencies of cache replacement policies, ML-based approaches showed promising applications in this field. In this work, decision trees \cite{brodley1995multivariate}, MLP, and CNN\cite{schmidhuber2015deep} would be implemented to make decisions over page evictions when there is a cache miss happening.
 
@@ -211,7 +211,7 @@ Let $Z$ be the sample space where samples are represented as $X\times Y$. A mode
 With the data being processed in the first approach, decision trees and MLPs were implemented, which take each sample $X_i \in \mathbb{R}^{3}$ as the input, and produce $Y_i \in \left\{0,1\right\}$ as the output. For the decision tree, Gini Impurity [Brodley, Carla E., and Paul E. Utgoff. "Multivariate decision trees." Machine learning 19.1 (1995): 45-77.] was adopted as the split criterion with equal class weights. During the training, the model would always try to expand until all leaves nodes are pure. 
 
 
-For MLPs, two different structures - MLP1 and MLP2, two models with the highest hit ratio, are selected for comparison in later experiments - are implemented to examine the model performances. As shown in the figure figure \ref{fig:mlp_design}, MLP1 consists of one input layer, one output layer, and three hidden layers. The numbers of neurons for each layer are 3, 10, 100, 500, 2. MLP2 consists of one more hidden layers with a size of 1000. Notably, in both cases, ReLU was applied as the activation function. The model would take each sample as input and compute the class labels, trying to optimize the cross-entropy loss.
+For MLPs, two different structures - MLP1 and MLP2, two models with the highest hit ratio, are selected for comparison in later experiments - are implemented to examine the model performances. MLP1 consists of one input layer, one output layer, and three hidden layers. The numbers of neurons for each layer are 3, 10, 100, 500, 2. MLP2 consists of one more hidden layers with a size of 1000. Notably, in both cases, ReLU was applied as the activation function. The model would take each sample as input and compute the class labels, trying to optimize the cross-entropy loss.
 \begin{align} 
 \begin{split}
 \operatorname{loss}(x, y)=-\log \left(\frac{\exp (x[y])}{\sum_{j} \exp (x[j])}\right)
@@ -227,7 +227,7 @@ For MLPs, two different structures - MLP1 and MLP2, two models with the highest 
 \end{figure}
 
 
-With the data being processed in the second approach, convolutional neural networks were implemented. The model consists of two convolutional layers and fully connected layers as well. The input layer dimension is (100,3,1) where 100 refers to fixed cache size, 3 refers to 3-dimensional features: block number, recency, and frequency, and 1 is the number of channels. The first convolutional layer consists of 6 kernels with sizes of (10,3,1). Notably, The kernel was set as wide as the data for the model to focus on internal relations among pages in the cache. After two convolutional layers, three layers of fully connected are attached.
+With the data being processed in the second approach, convolutional neural networks were implemented. As shown in the figure \ref{fig:nn_design}, the model consists of two convolutional layers and fully connected layers as well. The input layer dimension is (100,3,1) where 100 refers to fixed cache size, 3 refers to 3-dimensional features: block number, recency, and frequency, and 1 is the number of channels. The first convolutional layer consists of 6 kernels with sizes of (10,3,1). Notably, The kernel was set as wide as the data for the model to focus on internal relations among pages in the cache. After two convolutional layers, three layers of fully connected are attached.
 
 \section{Experiments and analysis}
 
