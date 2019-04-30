@@ -1,6 +1,6 @@
-# A-Machine-Learning-based-Cache-Management-Policy
+# Optimizing-LeCar-and-Convolutional-Neural-Network-Approaches-for-Cache-Replacement-Policy
 
-Detailed report could be found at _[A Machine Learning based Cache Management Policy](https://github.com/ShawnLYU/A-Machine-Learning-based-Cache-Management-Policy/blob/master/report/csc2233.pdf)_.
+Detailed report could be found at _[Optimizing LeCar and Convolutional Neural Network Approaches for Cache Replacement Policy](https://github.com/ShawnLYU/Optimizing-LeCar-and-Convolutional-Neural-Network-Approaches-for-Cache-Replacement-Policy/blob/master/report/csc2233.pdf)_.
 
 ## Description
 Improving system performance with caching replacement technique is always one of the hottest topics in systematic research. In this project, we proposed a new cache eviction algorithm, namely, LeCar\_Opt, which outperforms ARC when the cache size is small. Furthermore, machine learning models are used to learn the cache replacement patterns on real-world workload. We implemented, tuned and analyzed the Multilayer Perceptron, Convolutional Neural Network, and Decision Tree on the OPT solutions. It is concluded that machine learning models are capable of learning OPT patterns with adequate hyperparameter tuning.
