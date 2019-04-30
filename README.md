@@ -30,7 +30,7 @@ What things you need to install the software and how to install them
 
 ## Running the tests
 
-In Neural networks, there are two pre-trained models: MLP and CNN. In each folder, there is a Jupyter Notebook where you could load the model and make predictions.
+In [Neural networks](https://github.com/ShawnLYU/Optimizing-LeCar-and-Convolutional-Neural-Network-Approaches-for-Cache-Replacement-Policy/tree/master/Neural_Networks), there are two pre-trained models: MLP and CNN. In each folder, there is a Jupyter Notebook where you could load the model and make predictions. Besides, ```ml.py``` is for training purpose.
 
 In LeCar_Opt, the variables "`input_file`", "`cache_size_array`", and "`algorithms`" need to be setup in the main method.
 The LeCar_Opt is the method "`LeCar_Opt5`" in `CacheAlgorithms.py`. 
@@ -42,6 +42,9 @@ python3 CacheAlgorithm.py
 
 A sample testing benchmark is added in `LeCar_Opt/BenchMark18.txt`
     
+    
+
+
 ## Contributing
 
 This project exists thanks to all the people who contribute. 
