@@ -87,6 +87,7 @@ Improving system performance with caching replacement technique is always one of
 
 %-------------------------------------------------------------------------------
 \section{Introduction}
+
 Historically, the development of CPU is much faster than the improvement of disk bandwidth. Cache replacement algorithms as one of the oldest and fundamental computer problems play an essential role to resolve this gap. The performance of caching algorithms strongly influence the system performance. Especially in the past decade,  with the advance of the big data technology, more and more data are required to be stored and processed in the modern software systems. 
 
 Cache is used to balance the performance difference between high-speed devices and low-speed ones. For example, the data in the memory is written to the Hard Disk Drive (HDD). Since HDD is much slower than the memory, it takes a long time to complete a task in theory, which results in very slow writing performance. In order to resolve the speed difference between memory and HDD, a buffer is created between them to temporarily store the data. 
@@ -114,8 +115,6 @@ Increasing attention is cast on Machine Learning (ML) in recent years, which is 
 Researchers have shown that ML could be applied to improve cache replacement policies: \cite{im2018snn} proposed an ML-based caching system to notably decrease the load of content servers by improving caching decisions; \cite{ari2002acme} developed the ACME system which utilizes ML to learn from multiple cache replacement strategies before making the recommendation about which to evict; \cite{article} showed that supervised learning algorithms like Support Vector Machines and Naive Bayes would lead to considering improving on hit ratio when combined with traditional algorithms like LRU, LFU. Besides, with the increasing computational powers, Neural Networks like MLP and CNN furthermore enhance the learning ability of machines.
 
 As revealing internal relations and capturing hidden patterns among page requests would remarkably improve the efficiencies of cache replacement policies, ML-based approaches showed promising applications in this field. In this work, decision trees \cite{brodley1995multivariate}, MLP, and CNN\cite{schmidhuber2015deep} would be implemented to make decisions over page evictions when there is a cache miss happening.
-
-
 
 \section{Methodology}
 
@@ -227,7 +226,7 @@ For MLPs, two different structures - MLP1 and MLP2, two models with the highest 
 \end{figure}
 
 
-With the data being processed in the second approach, convolutional neural networks were implemented. As shown in the figure \ref{fig:nn_design}, the model consists of two convolutional layers and fully connected layers as well. The input layer dimension is (100,3,1) where 100 refers to fixed cache size, 3 refers to 3-dimensional features: block number, recency, and frequency, and 1 is the number of channels. The first convolutional layer consists of 6 kernels with sizes of (10,3,1). Notably, The kernel was set as wide as the data for the model to focus on internal relations among pages in the cache. After two convolutional layers, three layers of fully connected are attached.
+With the data being processed in the second approach, convolutional neural networks were implemented. As shown in figure \ref{fig:nn_design}, the model consists of two convolutional layers and fully connected layers as well. The input layer dimension is (100,3,1) where 100 refers to fixed cache size, 3 refers to 3-dimensional features: block number, recency, and frequency, and 1 is the number of channels. The first convolutional layer consists of 6 kernels with sizes of (10,3,1). Notably, The kernel was set as wide as the data for the model to focus on internal relations among pages in the cache. After two convolutional layers, three layers of fully connected are attached.
 
 \section{Experiments and analysis}
 
@@ -240,7 +239,7 @@ With the data being processed in the second approach, convolutional neural netwo
 }
 	\label{fig:lecar_res}
 \end{figure}
-In figure \ref{fig:lecar_res}, LeCar\_Opt is compared with the traditional cache algorithms: LRU, LFU, ARC, and OPT. Among all these algorithms, OPT stands for the best possible hit ratio on the FIU workload. One interesting observation is when the cache size is large, LFU is the best strategy among other algorithms except for OPT, and LRU benefited the least improvement from a larger cache size. This generally show two important characteristics of the workload dataset. First, the pages with high frequency will more likely to be accessed again in the workload. Second, the low performance of LRU with a larger cache size indicates that the workload consists of long and large sequential scan requests. Another interesting observation is that when the cache size is small, LeCar generally outperforms LRU, LFU, and ARC. When the cache size is big, LeCar\_Opt is more close to the performance of LRU. 
+In figure \ref{fig:lecar_res}, LeCar\_Opt is compared with the traditional cache algorithms: LRU, LFU, ARC, and OPT. Among all these algorithms, OPT stands for the best possible hit ratio on the FIU workload. One interesting observation is when the cache size is large, LFU is the best strategy among other algorithms except for OPT, and LRU benefited the least improvement from a larger cache size. This generally shows two important characteristics of the workload dataset. First, the pages with high frequency will more likely to be accessed again in the workload. Second, the low performance of LRU with a larger cache size indicates that the workload consists of long and large sequential scan requests. Another interesting observation is that when the cache size is small, LeCar generally outperforms LRU, LFU, and ARC. When the cache size is big, LeCar\_Opt is more close to the performance of LRU. 
 
 Figure \ref{fig:time} summarizes the efficiency of the algorithm respect to different cache size. The LeCar\_Opt is slower than ARC. However, refers to table \ref{tab:my-table}, the execution time increased linearly when the cache size grows.
 
@@ -282,7 +281,7 @@ Cache Size & ARC Elapsed Time & LeCar\_OPT Elapsed Time & LeCar\_OPT/ARC Ratio \
 	\label{fig:nn_hit}
 \end{figure}
 
-During the experiments with ML-based approaches, hit ratio was used as the evaluation metric. We first tested with MLP with different cache sizes. As shown in the figure \ref{fig:nn_hit}, a more complex network structure provides little improvement, and decision tree claimed a better performance compared to MLP. Besides, MLP did not achieve a higher hit ratio in larger cache sizes. On the contrast, the decision tree presented a steadily increased performance with different cache sizes. Then, we can summarize that a decision tree performs much better in the cache replacement scenario.
+During the experiments with ML-based approaches, hit ratio was used as the evaluation metric. We first tested with MLP with different cache sizes. As shown in figure \ref{fig:nn_hit}, a more complex network structure provides little improvement, and decision tree claimed a better performance compared to MLP. Besides, MLP did not achieve a higher hit ratio in larger cache sizes. On the contrast, the decision tree presented a steadily increased performance with different cache sizes. Then, we can summarize that a decision tree performs much better in the cache replacement scenario.
 
 \begin{figure}[!ht]
 	\centering 
